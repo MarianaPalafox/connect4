@@ -1,0 +1,42 @@
+<style>
+table {
+  border: 5px solid blue;
+  background-color: #EEEEEE;
+  text-align: center;
+  border-collapse: collapse;
+}
+table td, table th {
+  border: 5px solid blue;
+  height: 50px;
+  width:50px;
+}
+.yellow{
+    background-color: yellow
+}
+.red{
+    background-color: red
+}
+</style>
+
+<h1>New Game</h1>
+<center>
+<%= @game.tiles %>
+<table>
+    <% @game.tiles.to_a.each_with_index do |elements ,i| %>
+        <tr>
+            <td><%= i+1 %></td>
+            <% elements.each_with_index do |value, x|%>
+                <td class="#{<%= value %>}" onclick="<% @game.update_column :tiles, '' %>"></td>
+            <% end %>
+        </tr>
+    <% end %>
+    <tr>
+        <td></td>
+        <% column = 0%>
+        <% @game.board.columns.times do %>
+            <td><%= @Alpha26[column] %></td>
+            <% column += 1%>
+        <% end %>
+    <tr>
+</table>
+</center>
